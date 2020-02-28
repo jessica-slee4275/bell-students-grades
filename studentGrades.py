@@ -12,15 +12,16 @@ while True:
             if(grade < 0 or grade > 100):
                 print("Grade can not be under 0 or over 100")
                 break
+            elif(round(grade,-1) < 40):
+                outputGrades.append(grade) #33->33
             else:
-                if(grade < 38 and grade > 80):
-                    outputGrades.append(grade)
+                rGrade = int(round(grade,-1))
+                if(rGrade < grade):
+                    rGrade += 5 
+                if(grade % 10 >= 5 and (rGrade - grade) >= 3):
+                    outputGrades.append(grade) #67->67 
+                elif(grade % 10 >= 5 and (rGrade - grade) < 3): 
+                    outputGrades.append(rGrade) #38->40
                 else:
-                    if(grade%10 >= 3 and grade%10 < 5):
-                        temp = str(grade/10) + str(5)
-                        outputGrades.append(int(temp))
-                    elif(grade%10 > 5):
-                        outputGrades.append(int(round(float(grade))))
-                    else:
-                        outputGrades.append(grade)
+                    outputGrades.append(grade) # 73->73
         print(outputGrades)
